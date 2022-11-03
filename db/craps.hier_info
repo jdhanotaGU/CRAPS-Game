@@ -1,0 +1,27 @@
+|craps
+rst => previousSum[0].ACLR
+rst => previousSum[1].ACLR
+rst => previousSum[2].ACLR
+rst => previousSum[3].ACLR
+rst => currentSum[0].ACLR
+rst => currentSum[1].ACLR
+rst => currentSum[2].ACLR
+rst => currentSum[3].ACLR
+rst => firstRoll.ACLR
+rst => currentState~3.DATAIN
+MCLK => \craps_negEdgeDetect:sigB.CLK
+MCLK => previousSum[0].CLK
+MCLK => previousSum[1].CLK
+MCLK => previousSum[2].CLK
+MCLK => previousSum[3].CLK
+MCLK => currentSum[0].CLK
+MCLK => currentSum[1].CLK
+MCLK => currentSum[2].CLK
+MCLK => currentSum[3].CLK
+MCLK => firstRoll.CLK
+MCLK => currentState~1.DATAIN
+key => \craps_negEdgeDetect:sigB.DATAIN
+key => key_clean.IN1
+slow_clk <= comb.DB_MAX_OUTPUT_PORT_TYPE
+
+
