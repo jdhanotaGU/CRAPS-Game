@@ -1,0 +1,7 @@
+
+State Machine - |craps|currentState
+Name currentState.lose currentState.win currentState.pressRecieved currentState.waitPress 
+currentState.waitPress 0 0 0 0 
+currentState.pressRecieved 0 0 1 1 
+currentState.win 0 1 0 1 
+currentState.lose 1 0 0 1 
