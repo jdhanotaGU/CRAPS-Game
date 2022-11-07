@@ -4,8 +4,8 @@ USE ieee.numeric_std.all;
 
 entity craps is
 port (rst, MCLK, key: in std_logic;
-		slow_clk: out std_logic, -- slow_clk is the slowed down clock
-		seg1, seg2, seg3, seg4: out std_logic_vector(6 downto 0),	-- outputs for 7 seg displays
+		slow_clk: out std_logic; -- slow_clk is the slowed down clock
+		seg1, seg2, seg3, seg4: out std_logic_vector(6 downto 0);	-- outputs for 7 seg displays
 		win_LED, lose_LED: out std_logic	-- LEDs for win and lose
 		);
 end craps;
@@ -24,10 +24,10 @@ signal currentSum: integer range 0 to 12;
 signal previousSum: integer range 0 to 12;
 signal dice1Cnt: integer range 0 to 7;
 signal dice2Cnt: integer range 0 to 7;
-signal seg1_ouput : std_logic_vector(6 downto 0);
-signal seg2_ouput : std_logic_vector(6 downto 0);
-signal seg3_ouput : std_logic_vector(6 downto 0);
-signal seg4_ouput : std_logic_vector(6 downto 0);
+signal seg1_output : std_logic_vector(6 downto 0);
+signal seg2_output : std_logic_vector(6 downto 0);
+signal seg3_output : std_logic_vector(6 downto 0);
+signal seg4_output : std_logic_vector(6 downto 0);
 	
 begin
 	craps_nextStateLogic_p: process(currentState)
@@ -79,8 +79,8 @@ begin
 			currentSum <= 0;
 			previousSum <= 0;
 			currentState <= waitPress;
-			win_LED <= '0';	-- added
-			lose_LED <= '0';	-- added
+			--win_LED <= '0';	-- added
+			--lose_LED <= '0';	-- added
 		elsif (rising_edge(MCLK)) then
 			currentState <= nextState;
 			if (key_clean = '1') then
@@ -99,9 +99,9 @@ begin
 	
 	end process craps_DFlipFlop;
 	
-	craps_segmentLogic_p: process(dice1Cnt, dice2Cnt, current_sum)
+	craps_segmentLogic_p: process(dice1Cnt, dice2Cnt, currentSum)
 	begin
-		case dice1 is
+		case dice1Cnt is
 			when 1 =>
 				seg1_output <= "0000110";
 			when 2 =>
@@ -117,7 +117,7 @@ begin
 			when others =>
 				seg1_output <= "0000000";
 		end case;
-		case dice2 is
+		case dice2Cnt is
 			when 1 =>
 				seg2_output <= "0000110";
 			when 2 =>
@@ -133,41 +133,44 @@ begin
 			when others =>
 				seg2_output <= "0000000";
 		end case;
-		case current_sum is
+		case currentSum is
 			when 2 =>
-				seg3_ouput <= "0000000";
-				seg4_ouput <= "1011011";
+				seg3_output <= "0000000";
+				seg4_output <= "1011011";
 			when 3 =>
-				seg3_ouput <= "0000000";
-				seg4_ouput <= "1001111";
+				seg3_output <= "0000000";
+				seg4_output <= "1001111";
 			when 4 => 
-				seg3_ouput <= "0000000";
-				seg4_ouput <= "1100110";
+				seg3_output <= "0000000";
+				seg4_output <= "1100110";
 			when 5 =>
-				seg3_ouput <= "0000000";
-				seg4_ouput <= "1101101";
+				seg3_output <= "0000000";
+				seg4_output <= "1101101";
 			when 6 =>
-				seg3_ouput <= "0000000";
-				seg4_ouput <= "1111101";
+				seg3_output <= "0000000";
+				seg4_output <= "1111101";
 			when 7 =>
-				seg3_ouput <= "0000000";
-				seg4_ouput <= "0000111";
+				seg3_output <= "0000000";
+				seg4_output <= "0000111";
 			when 8 =>
-				seg3_ouput <= "0000000";
-				seg4_ouput <= "1111111";
+				seg3_output <= "0000000";
+				seg4_output <= "1111111";
 			when 9 =>
-				seg3_ouput <= "0000000";
-				seg4_ouput <= "1101111";
+				seg3_output <= "0000000";
+				seg4_output <= "1101111";
 			when 10 =>
-				seg3_ouput <= "0000110";
-				seg4_ouput <= "0111111"
+				seg3_output <= "0000110";
+				seg4_output <= "0111111";
 			when 11 =>
-				seg3_ouput <= "0000110";
-				seg4_ouput <= "0000110"
+				seg3_output <= "0000110";
+				seg4_output <= "0000110";
 			when 12 =>
-				seg3_ouput <= "0000110";
-				seg4_ouput <= "1011011";
-	end process craps_segmentLogic_p
+				seg3_output <= "0000110";
+				seg4_output <= "1011011";
+			when others =>
+				-- do nothing
+		end case;
+	end process craps_segmentLogic_p;
 	
 	-- I don't believe next state is needed in the sensitivity list
 	-- segments might cause latches since not defined for every case
