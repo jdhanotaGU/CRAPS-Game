@@ -18,7 +18,7 @@ signal nextState: stateType := waitPress;
 signal currentState: stateType := waitPress;
 signal slow_clk_in: std_logic; -- This will act as our slow clock. Updated by the counter component.
 signal key_clean: std_logic := '0'; -- Holds the clean key press. (Cleaned using negative edge detection)
-signal firstRoll: std_logic := '0'; -- 0 if this is the first roll. If on 2nd+ roll, then 1.
+signal firstRoll: std_logic := '1'; -- 1 if this is the first roll. If on 2nd+ roll, then 0.
 signal nextGame: std_logic := '0'; -- Signal that the next game is starting (update previousSum)
 signal stopCount: std_logic := '0';
 signal currentSum: integer range 0 to 12;
@@ -41,10 +41,11 @@ begin
 	-- Component Definitions --
 	slowClock : counter port map(rst => reset, clk_in => MCLK, slow_clk => slow_clk_in);
 	
-	craps_nextStateLogic_p: process(currentState)
+	craps_nextStateLogic_p: process(currentState, key_clean, firstRoll, currentSum, previousSum)
 	begin
 		case currentState is
 			when waitPress => 
+				debugLED <= firstRoll;
 				nextGame <= '0'; -- reset
 				stopCount <= '0';
 				if (key_clean = '1') then
@@ -54,7 +55,7 @@ begin
 				end if;
 			
 			when pressRecieved =>
-				if (firstRoll = '1') then
+				if (firstRoll = '1') then -- When this is the first roll:
 					if (currentSum = 7 or currentSum = 11) then
 						nextState <= win;
 						stopCount <= '1';
@@ -66,7 +67,7 @@ begin
 						nextGame <= '1';
 						nextState <= waitPress;
 					end if;
-				else -- if this is the 2nd+ roll
+				elsif (firstRoll = '0') then -- if this is the 2nd+ roll
 					if (currentSum = previousSum) then
 						nextState <= win;
 						stopCount <= '1';
@@ -93,7 +94,7 @@ begin
 	craps_DFlipFlop: process(slow_clk_in, reset, stopCount)
 	begin
 		if (reset = '0') then
-			firstRoll <= '0';
+			firstRoll <= '1';
 			dice1Cnt <=  0;
 			dice2Cnt <= 0;
 			currentSum <= 0;
@@ -103,13 +104,13 @@ begin
 			currentState <= nextState;
 			if (stopCount = '0') then
 				if (dice1Cnt >= 6) then
-					dice1Cnt <= 0;
+					dice1Cnt <= 1;
 				else
 					dice1Cnt <= dice1Cnt + 1;
 				end if;
 				if ((dice1Cnt mod 3) = 0) then
 					if (dice2Cnt >= 6) then
-						dice2Cnt <= 0;
+						dice2Cnt <= 1;
 					else
 						dice2Cnt <= dice2Cnt + 1;
 					end if;
@@ -121,22 +122,18 @@ begin
 				dice2Cnt <= dice2Cnt;
 			end if;
 			if (key_clean = '1') then
-				if (firstRoll = '0') then -- This is the first game
-					firstRoll <= '1';
-				else
-					firstRoll <= '0'; -- prevent latch
-				end if;
 				currentSum <= dice1Cnt + dice2Cnt;
 			end if;
 			
 			if (nextGame = '1') then
+				firstRoll <= '0'; -- No longer the first roll
 				previousSum <= currentSum; -- Is this ok? Read and write ok on currentSum?
 			end if;
 		end if;
 	
 	end process craps_DFlipFlop;
 	
-	craps_segmentLogic_p: process(dice1Cnt, dice2Cnt, currentSum)
+	craps_segmentLogic_p: process(dice1Cnt, dice2Cnt, currentSum) -- Using positive logic
 	begin
 		case dice1Cnt is
 			when 1 =>
@@ -204,7 +201,7 @@ begin
 			when 12 =>
 				seg3_output <= "0000110";
 				seg4_output <= "1011011";
-			when others =>
+			when others => -- On the first roll, currentSum = 0
 				seg3_output <= "0000000";
 				seg4_output <= "0000000";
 				-- do nothing
@@ -213,22 +210,22 @@ begin
 	
 	-- I don't believe next state is needed in the sensitivity list
 	-- segments might cause latches since not defined for every case
-	craps_outputLogic_p: process(currentState, nextState)
+	craps_outputLogic_p: process(currentState, nextState, seg1_output, seg2_output, seg3_output, seg4_output)
 	begin
 		case currentState is 
 			when waitPress =>
 				-- display counter 7-seg values constanty updating
-				debugLED <= '0';
+				--debugLED <= '0';
 				seg1 <= not seg1_output;
 				seg2 <= not seg2_output;
-				seg3 <= not "0000000";
-				seg4 <= not "0000000";
+				seg3 <= not seg3_output;
+				seg4 <= not seg4_output;
 				win_LED <= '0';
 				lose_LED <= '0';
 			when pressRecieved =>
 				-- display 7-seg with final value of button pressed
 				-- should display result of first dice role, second dice role, and summed dice role
-				debugLED <= '1';
+				--debugLED <= '1';
 				seg1 <= not seg1_output;
 				seg2 <= not seg2_output;
 				seg3 <= not seg3_output;
@@ -236,9 +233,17 @@ begin
 				win_LED <= '0';
 				lose_LED <= '0';
 			when win =>
+				seg1 <= not seg1_output;
+				seg2 <= not seg2_output;
+				seg3 <= not seg3_output;
+				seg4 <= not seg4_output;
 				win_LED <= '1';
 				lose_LED <= '0';
 			when lose =>
+				seg1 <= not seg1_output;
+				seg2 <= not seg2_output;
+				seg3 <= not seg3_output;
+				seg4 <= not seg4_output;
 				win_LED <= '0';
 				lose_LED <= '1';
 			when others =>

@@ -37,6 +37,6 @@ set_location_assignment PIN_R24 -to key
 
 set_location_assignment PIN_Y2 -to MCLK
 
-set_location_assignment PIN_M23 -to rst
+set_location_assignment PIN_M23 -to reset
 
 set_location_assignment PIN_G19 -to debugLED
