@@ -102,7 +102,12 @@ begin
 			currentState <= waitPress;
 		elsif (rising_edge(slow_clk_in)) then
 			currentState <= nextState;
-			if (stopCount = '0') then
+			if (key_clean = '1' and stopCount = '0') then
+				currentSum <= dice1Cnt + dice2Cnt;
+				dice1Cnt <= dice1Cnt; -- prevent infered latch
+				dice2Cnt <= dice2Cnt; -- prevent infered latch
+			elsif (stopCount = '0') then -- Else, increment the dice
+				currentSum <= currentSum; -- prevent infered latch
 				if (dice1Cnt >= 6) then
 					dice1Cnt <= 1;
 				else
@@ -114,17 +119,14 @@ begin
 					else
 						dice2Cnt <= dice2Cnt + 1;
 					end if;
-				else 
+				else
 					dice2Cnt <= dice2Cnt;
 				end if;
-			else
-				dice1Cnt <= dice1Cnt;
-				dice2Cnt <= dice2Cnt;
+			else -- (stopCount = '1') Do nothing
+				dice1Cnt <= dice1Cnt; -- prevent infered latch
+				dice2Cnt <= dice2Cnt; -- prevent infered latch
+				currentSum <= currentSum; -- prevent infered latch
 			end if;
-			if (key_clean = '1') then
-				currentSum <= dice1Cnt + dice2Cnt;
-			end if;
-			
 			if (nextGame = '1') then
 				firstRoll <= '0'; -- No longer the first roll
 				previousSum <= currentSum; -- Is this ok? Read and write ok on currentSum?

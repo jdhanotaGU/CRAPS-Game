@@ -1,10 +1,10 @@
-Analysis & Synthesis Status : Successful - Mon Nov 07 14:58:51 2022
+Analysis & Synthesis Status : Successful - Tue Nov 08 11:31:51 2022
 Quartus Prime Version : 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 Revision Name : craps
 Top-level Entity Name : craps
 Family : Cyclone IV E
-Total logic elements : 100
-    Total combinational functions : 94
+Total logic elements : 102
+    Total combinational functions : 96
     Dedicated logic registers : 40
 Total registers : 40
 Total pins : 34
