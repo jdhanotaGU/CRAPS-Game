@@ -1,5 +1,5 @@
 Analysis & Synthesis report for craps
-Mon Nov 07 14:58:51 2022
+Tue Nov 08 11:31:51 2022
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -48,13 +48,13 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Nov 07 14:58:51 2022       ;
+; Analysis & Synthesis Status        ; Successful - Tue Nov 08 11:31:51 2022       ;
 ; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                      ; craps                                       ;
 ; Top-level Entity Name              ; craps                                       ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 100                                         ;
-;     Total combinational functions  ; 94                                          ;
+; Total logic elements               ; 102                                         ;
+;     Total combinational functions  ; 96                                          ;
 ;     Dedicated logic registers      ; 40                                          ;
 ; Total registers                    ; 40                                          ;
 ; Total pins                         ; 34                                          ;
@@ -164,8 +164,7 @@ https://fpgasoftware.intel.com/eula.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
-;     Processors 3-6         ;   0.0%      ;
+;     Processors 2-6         ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -193,16 +192,16 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-------------+
 ; Resource                                    ; Usage       ;
 +---------------------------------------------+-------------+
-; Estimated Total logic elements              ; 100         ;
+; Estimated Total logic elements              ; 102         ;
 ;                                             ;             ;
-; Total combinational functions               ; 94          ;
+; Total combinational functions               ; 96          ;
 ; Logic element usage by number of LUT inputs ;             ;
-;     -- 4 input functions                    ; 26          ;
+;     -- 4 input functions                    ; 28          ;
 ;     -- 3 input functions                    ; 38          ;
 ;     -- <=2 input functions                  ; 30          ;
 ;                                             ;             ;
 ; Logic elements by mode                      ;             ;
-;     -- normal mode                          ; 70          ;
+;     -- normal mode                          ; 72          ;
 ;     -- arithmetic mode                      ; 24          ;
 ;                                             ;             ;
 ; Total registers                             ; 40          ;
@@ -215,8 +214,8 @@ https://fpgasoftware.intel.com/eula.
 ;                                             ;             ;
 ; Maximum fan-out node                        ; reset~input ;
 ; Maximum fan-out                             ; 39          ;
-; Total fan-out                               ; 466         ;
-; Average fan-out                             ; 2.31        ;
+; Total fan-out                               ; 474         ;
+; Average fan-out                             ; 2.32        ;
 +---------------------------------------------+-------------+
 
 
@@ -225,7 +224,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------+---------------------+--------------+
 ; Compilation Hierarchy Node             ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                    ; Entity Name         ; Library Name ;
 +----------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------+---------------------+--------------+
-; |craps                                 ; 94 (54)             ; 40 (20)                   ; 0           ; 0            ; 0       ; 0         ; 34   ; 0            ; |craps                                                                                                 ; craps               ; work         ;
+; |craps                                 ; 96 (56)             ; 40 (20)                   ; 0           ; 0            ; 0       ; 0         ; 34   ; 0            ; |craps                                                                                                 ; craps               ; work         ;
 ;    |counter:slowClock|                 ; 34 (34)             ; 20 (20)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |craps|counter:slowClock                                                                               ; counter             ; work         ;
 ;    |lpm_divide:Mod0|                   ; 6 (0)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |craps|lpm_divide:Mod0                                                                                 ; lpm_divide          ; work         ;
 ;       |lpm_divide_g9m:auto_generated|  ; 6 (0)               ; 0 (0)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |craps|lpm_divide:Mod0|lpm_divide_g9m:auto_generated                                                   ; lpm_divide_g9m      ; work         ;
@@ -327,19 +326,19 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     CLR               ; 24                          ;
 ;     ENA CLR           ; 15                          ;
 ;     plain             ; 1                           ;
-; cycloneiii_lcell_comb ; 109                         ;
+; cycloneiii_lcell_comb ; 111                         ;
 ;     arith             ; 24                          ;
 ;         2 data inputs ; 21                          ;
 ;         3 data inputs ; 3                           ;
-;     normal            ; 85                          ;
+;     normal            ; 87                          ;
 ;         0 data inputs ; 3                           ;
 ;         1 data inputs ; 15                          ;
 ;         2 data inputs ; 6                           ;
 ;         3 data inputs ; 35                          ;
-;         4 data inputs ; 26                          ;
+;         4 data inputs ; 28                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 4.10                        ;
-; Average LUT depth     ; 2.69                        ;
+; Max LUT depth         ; 4.20                        ;
+; Average LUT depth     ; 2.75                        ;
 +-----------------------+-----------------------------+
 
 
@@ -348,7 +347,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -358,7 +357,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Mon Nov 07 14:58:42 2022
+    Info: Processing started: Tue Nov 08 11:31:38 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off craps -c craps
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 6 of the 6 processors detected
@@ -377,9 +376,9 @@ Info (10041): Inferred latch for "nextGame" at craps.vhd(44) File: C:/Users/gage
 Info (10041): Inferred latch for "debugLED" at craps.vhd(44) File: C:/Users/gageb/OneDrive - Gonzaga University/Fall 2022/CPEN 430L_01/lab5/craps.vhd Line: 44
 Info (12128): Elaborating entity "counter" for hierarchy "counter:slowClock" File: C:/Users/gageb/OneDrive - Gonzaga University/Fall 2022/CPEN 430L_01/lab5/craps.vhd Line: 42
 Info (278001): Inferred 1 megafunctions from design logic
-    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod0" File: C:/Users/gageb/OneDrive - Gonzaga University/Fall 2022/CPEN 430L_01/lab5/craps.vhd Line: 111
-Info (12130): Elaborated megafunction instantiation "lpm_divide:Mod0" File: C:/Users/gageb/OneDrive - Gonzaga University/Fall 2022/CPEN 430L_01/lab5/craps.vhd Line: 111
-Info (12133): Instantiated megafunction "lpm_divide:Mod0" with the following parameter: File: C:/Users/gageb/OneDrive - Gonzaga University/Fall 2022/CPEN 430L_01/lab5/craps.vhd Line: 111
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "Mod0" File: C:/Users/gageb/OneDrive - Gonzaga University/Fall 2022/CPEN 430L_01/lab5/craps.vhd Line: 116
+Info (12130): Elaborated megafunction instantiation "lpm_divide:Mod0" File: C:/Users/gageb/OneDrive - Gonzaga University/Fall 2022/CPEN 430L_01/lab5/craps.vhd Line: 116
+Info (12133): Instantiated megafunction "lpm_divide:Mod0" with the following parameter: File: C:/Users/gageb/OneDrive - Gonzaga University/Fall 2022/CPEN 430L_01/lab5/craps.vhd Line: 116
     Info (12134): Parameter "LPM_WIDTHN" = "3"
     Info (12134): Parameter "LPM_WIDTHD" = "3"
     Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
@@ -409,14 +408,14 @@ Warning (13024): Output pins are stuck at VCC or GND
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 134 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 136 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 3 input pins
     Info (21059): Implemented 31 output pins
-    Info (21061): Implemented 100 logic cells
+    Info (21061): Implemented 102 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 15 warnings
-    Info: Peak virtual memory: 4837 megabytes
-    Info: Processing ended: Mon Nov 07 14:58:51 2022
-    Info: Elapsed time: 00:00:09
-    Info: Total CPU time (on all processors): 00:00:12
+    Info: Peak virtual memory: 4817 megabytes
+    Info: Processing ended: Tue Nov 08 11:31:51 2022
+    Info: Elapsed time: 00:00:13
+    Info: Total CPU time (on all processors): 00:00:17
 
 

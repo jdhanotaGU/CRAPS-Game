@@ -3,35 +3,35 @@ Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1200mV 85C Model Setup 'counter:slowClock|\counter_p:slow_clk_v'
-Slack : -3.924
-TNS   : -52.631
+Slack : -4.221
+TNS   : -58.911
 
 Type  : Slow 1200mV 85C Model Setup 'MCLK'
-Slack : -3.528
-TNS   : -33.192
-
-Type  : Slow 1200mV 85C Model Setup 'currentState.waitPress'
-Slack : -1.332
-TNS   : -2.483
+Slack : -3.548
+TNS   : -33.303
 
 Type  : Slow 1200mV 85C Model Setup 'currentState.pressRecieved'
-Slack : -0.989
-TNS   : -0.989
+Slack : -1.689
+TNS   : -1.689
 
-Type  : Slow 1200mV 85C Model Hold 'currentState.pressRecieved'
-Slack : 0.028
+Type  : Slow 1200mV 85C Model Setup 'currentState.waitPress'
+Slack : -1.662
+TNS   : -3.129
+
+Type  : Slow 1200mV 85C Model Hold 'counter:slowClock|\counter_p:slow_clk_v'
+Slack : 0.404
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'currentState.waitPress'
-Slack : 0.372
+Slack : 0.434
 TNS   : 0.000
 
-Type  : Slow 1200mV 85C Model Hold 'counter:slowClock|\counter_p:slow_clk_v'
-Slack : 0.403
+Type  : Slow 1200mV 85C Model Hold 'currentState.pressRecieved'
+Slack : 0.555
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'MCLK'
-Slack : 0.641
+Slack : 0.642
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'MCLK'
@@ -42,40 +42,40 @@ Type  : Slow 1200mV 85C Model Minimum Pulse Width 'counter:slowClock|\counter_p:
 Slack : -1.285
 TNS   : -25.700
 
-Type  : Slow 1200mV 85C Model Minimum Pulse Width 'currentState.pressRecieved'
-Slack : 0.407
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'currentState.waitPress'
+Slack : 0.409
 TNS   : 0.000
 
-Type  : Slow 1200mV 85C Model Minimum Pulse Width 'currentState.waitPress'
-Slack : 0.435
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'currentState.pressRecieved'
+Slack : 0.440
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Setup 'counter:slowClock|\counter_p:slow_clk_v'
-Slack : -3.593
-TNS   : -47.471
+Slack : -3.765
+TNS   : -52.381
 
 Type  : Slow 1200mV 0C Model Setup 'MCLK'
-Slack : -3.199
-TNS   : -28.277
-
-Type  : Slow 1200mV 0C Model Setup 'currentState.waitPress'
-Slack : -1.172
-TNS   : -2.132
+Slack : -3.175
+TNS   : -28.011
 
 Type  : Slow 1200mV 0C Model Setup 'currentState.pressRecieved'
-Slack : -0.923
-TNS   : -0.923
+Slack : -1.567
+TNS   : -1.567
 
-Type  : Slow 1200mV 0C Model Hold 'currentState.pressRecieved'
-Slack : 0.023
-TNS   : 0.000
+Type  : Slow 1200mV 0C Model Setup 'currentState.waitPress'
+Slack : -1.469
+TNS   : -2.732
 
 Type  : Slow 1200mV 0C Model Hold 'counter:slowClock|\counter_p:slow_clk_v'
-Slack : 0.353
+Slack : 0.354
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'currentState.waitPress'
-Slack : 0.397
+Slack : 0.428
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'currentState.pressRecieved'
+Slack : 0.496
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'MCLK'
@@ -90,44 +90,44 @@ Type  : Slow 1200mV 0C Model Minimum Pulse Width 'counter:slowClock|\counter_p:s
 Slack : -1.285
 TNS   : -25.700
 
-Type  : Slow 1200mV 0C Model Minimum Pulse Width 'currentState.pressRecieved'
-Slack : 0.426
-TNS   : 0.000
-
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'currentState.waitPress'
-Slack : 0.456
+Slack : 0.423
 TNS   : 0.000
 
-Type  : Fast 1200mV 0C Model Setup 'MCLK'
-Slack : -1.295
-TNS   : -6.647
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'currentState.pressRecieved'
+Slack : 0.465
+TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Setup 'counter:slowClock|\counter_p:slow_clk_v'
-Slack : -1.293
-TNS   : -16.234
+Slack : -1.604
+TNS   : -21.195
+
+Type  : Fast 1200mV 0C Model Setup 'MCLK'
+Slack : -1.296
+TNS   : -6.865
 
 Type  : Fast 1200mV 0C Model Setup 'currentState.waitPress'
-Slack : -0.475
-TNS   : -0.515
+Slack : -0.642
+TNS   : -0.839
 
 Type  : Fast 1200mV 0C Model Setup 'currentState.pressRecieved'
-Slack : -0.207
-TNS   : -0.207
-
-Type  : Fast 1200mV 0C Model Hold 'currentState.pressRecieved'
-Slack : 0.086
-TNS   : 0.000
+Slack : -0.529
+TNS   : -0.529
 
 Type  : Fast 1200mV 0C Model Hold 'currentState.waitPress'
-Slack : 0.168
+Slack : 0.181
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'counter:slowClock|\counter_p:slow_clk_v'
-Slack : 0.181
+Slack : 0.182
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'MCLK'
 Slack : 0.291
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'currentState.pressRecieved'
+Slack : 0.311
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'MCLK'
@@ -139,11 +139,11 @@ Slack : -1.000
 TNS   : -20.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'currentState.pressRecieved'
-Slack : 0.429
+Slack : 0.434
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'currentState.waitPress'
-Slack : 0.435
+Slack : 0.443
 TNS   : 0.000
 
 ------------------------------------------------------------
